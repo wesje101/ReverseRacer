@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://csv74pk4uje76"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eqy0w"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vo8b5"]
+
+[node name="PlayerCar" type="Node3D"]
+
+[node name="VehicleBody3D" type="VehicleBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VehicleBody3D"]
+shape = SubResource("BoxShape3D_eqy0w")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleBody3D"]
+mesh = SubResource("BoxMesh_vo8b5")

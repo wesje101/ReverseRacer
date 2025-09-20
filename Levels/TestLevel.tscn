@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3crh0bmkfche"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_a3h7v"]
+size = Vector2(50, 50)
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uib4f"]
+albedo_color = Color(0.12955844, 0.12955847, 0.12955844, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a3h7v"]
+size = Vector3(50, 0.1, 50)
+
+[node name="TestLevel" type="Node3D"]
+
+[node name="GroundMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_a3h7v")
+surface_material_override/0 = SubResource("StandardMaterial3D_uib4f")
+
+[node name="GroundCollider" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.041176915, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GroundCollider"]
+shape = SubResource("BoxShape3D_a3h7v")
