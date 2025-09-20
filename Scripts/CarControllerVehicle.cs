@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class CarController : VehicleBody3D
+public partial class CarControllerVehicle : VehicleBody3D
 {
     [Export] float maxSteer = 0.9f;
     [Export] float steerSpeed = 10f;

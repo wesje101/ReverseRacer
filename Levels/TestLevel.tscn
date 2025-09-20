@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3crh0bmkfche"]
+[gd_scene load_steps=11 format=3 uid="uid://d3crh0bmkfche"]
 
-[ext_resource type="PackedScene" uid="uid://csv74pk4uje76" path="res://Objects/PlayerCar.tscn" id="1_uib4f"]
+[ext_resource type="PackedScene" uid="uid://d1m2dwkefef0f" path="res://Objects/PlayerCarBall.tscn" id="1_uib4f"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_a3h7v"]
 size = Vector2(50, 50)
@@ -19,10 +19,16 @@ color_ramp = SubResource("Gradient_uib4f")
 albedo_color = Color(0.12955844, 0.12955847, 0.12955844, 1)
 albedo_texture = SubResource("NoiseTexture2D_y1yrn")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_a3h7v"]
-size = Vector3(50, 12.235547, 50)
+[sub_resource type="BoxShape3D" id="BoxShape3D_uib4f"]
+size = Vector3(50, 15, 50)
 
 [sub_resource type="Environment" id="Environment_iqcmb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a3h7v"]
+size = Vector3(5, 5, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uib4f"]
+size = Vector3(5, 5, 5)
 
 [node name="TestLevel" type="Node3D"]
 
@@ -34,11 +40,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_uib4f")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.041176915, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GroundCollider"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.0677733, 0)
-shape = SubResource("BoxShape3D_a3h7v")
-
-[node name="PlayerCar" parent="." instance=ExtResource("1_uib4f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.065116405, -0.071656466, 0.4375677)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.5, 0)
+shape = SubResource("BoxShape3D_uib4f")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_iqcmb")
@@ -46,3 +49,30 @@ environment = SubResource("Environment_iqcmb")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 shadow_enabled = true
+
+[node name="GroundCollider2" type="StaticBody3D" parent="."]
+transform = Transform3D(0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0, 1, -9.446085, -0.041176915, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GroundCollider2"]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_a3h7v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GroundCollider2"]
+mesh = SubResource("BoxMesh_uib4f")
+
+[node name="GroundCollider3" type="StaticBody3D" parent="."]
+transform = Transform3D(-0.49999994, 0.8660252, 0, -0.8660252, -0.49999994, 0, 0, 0, 1, -9.1545925, -1.390903, 6)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GroundCollider3"]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_a3h7v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GroundCollider3"]
+mesh = SubResource("BoxMesh_uib4f")
+skeleton = NodePath("../../GroundCollider3")
+
+[node name="PlayerCarBall" parent="." instance=ExtResource("1_uib4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0817802, 4.0024505)

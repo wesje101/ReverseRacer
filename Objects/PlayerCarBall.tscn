@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1m2dwkefef0f"]
+
+[ext_resource type="Script" uid="uid://cnhsgpe68v1j0" path="res://Scripts/CarControllerBall.cs" id="1_px7ii"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l2pfa"]
+bounce = 0.1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_l2pfa"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_px7ii"]
+size = Vector3(1, 0.3, 0.6)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_px7ii"]
+top_radius = 0.3
+bottom_radius = 0.3
+height = 0.2
+
+[node name="PlayerCarBall" type="RigidBody3D" node_paths=PackedStringArray("carMesh", "frontRightWheel", "frontLeftWheel", "backRightWheel", "backLeftWheel", "groundRay")]
+physics_material_override = SubResource("PhysicsMaterial_l2pfa")
+gravity_scale = 5.0
+angular_damp = 10.0
+script = ExtResource("1_px7ii")
+bodyTilt = 5.0
+carMesh = NodePath("MeshInstance3D")
+frontRightWheel = NodePath("MeshInstance3D/FRWheel")
+frontRightWheelOffset = Vector3(0.49999997, -0.16245627, -0.5)
+frontLeftWheel = NodePath("MeshInstance3D/FLWheel")
+frontLeftWheelOffset = Vector3(-0.5, -0.16245627, -0.49999997)
+backRightWheel = NodePath("MeshInstance3D/BRWheel")
+backRightWheelOffset = Vector3(0.5, -0.16245627, 0.49999997)
+backLeftWheel = NodePath("MeshInstance3D/BLWheel")
+backLeftWheelOffset = Vector3(-0.49999997, -0.16245627, 0.5)
+groundRay = NodePath("MeshInstance3D/RayCast3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+shape = SubResource("SphereShape3D_l2pfa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+top_level = true
+mesh = SubResource("BoxMesh_px7ii")
+
+[node name="RayCast3D" type="RayCast3D" parent="MeshInstance3D"]
+
+[node name="Camera3D" type="Camera3D" parent="MeshInstance3D"]
+transform = Transform3D(-4.3076273e-08, 0.16984832, -0.9854703, 7.4243047e-09, 0.9854703, 0.16984832, 1, 8.881784e-16, -4.3711392e-08, -2.1798544, 1.3640287, -1.870211e-08)
+
+[node name="FRWheel" type="Node3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49999997, -0.16245627, 0.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D/FRWheel"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_px7ii")
+skeleton = NodePath("../..")
+
+[node name="FLWheel" type="Node3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.16245627, -0.49999997)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D/FLWheel"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_px7ii")
+skeleton = NodePath("../..")
+
+[node name="BRWheel" type="Node3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.16245627, 0.49999997)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D/BRWheel"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_px7ii")
+skeleton = NodePath("../..")
+
+[node name="BLWheel" type="Node3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49999997, -0.16245627, -0.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D/BLWheel"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_px7ii")
+skeleton = NodePath("../..")

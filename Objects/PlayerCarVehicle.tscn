@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://csv74pk4uje76"]
 
-[ext_resource type="Script" uid="uid://dii2fd7a5nvbj" path="res://Scripts/CarController.cs" id="1_vo8b5"]
+[ext_resource type="Script" uid="uid://dii2fd7a5nvbj" path="res://Scripts/CarControllerVehicle.cs" id="1_vo8b5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_eqy0w"]
 size = Vector3(1, 0.3, 0.6)
@@ -13,67 +13,78 @@ top_radius = 0.3
 bottom_radius = 0.3
 height = 0.15
 
-[node name="PlayerCar" type="Node3D"]
-
-[node name="VehicleBody3D" type="VehicleBody3D" parent="."]
+[node name="VehicleBody3D" type="VehicleBody3D"]
+mass = 160.0
+center_of_mass_mode = 1
 script = ExtResource("1_vo8b5")
-enginePower = 50.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="VehicleBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_eqy0w")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
 mesh = SubResource("BoxMesh_vo8b5")
+skeleton = NodePath("../..")
 
-[node name="WheelRB" type="VehicleWheel3D" parent="VehicleBody3D"]
+[node name="WheelRB" type="VehicleWheel3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.5, 0.5, 0.5)
 use_as_traction = true
+wheel_roll_influence = 1.0
 wheel_radius = 0.3
 wheel_rest_length = 0.1
 suspension_travel = 0.1
 suspension_stiffness = 75.0
+damping_compression = 0.4
+damping_relaxation = 0.6
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleBody3D/WheelRB"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WheelRB"]
 transform = Transform3D(-4.3711385e-08, -1, -4.371139e-08, 1, -4.371139e-08, 4.371139e-08, -4.371139e-08, -4.371139e-08, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_eqy0w")
 
-[node name="WheelRF" type="VehicleWheel3D" parent="VehicleBody3D"]
+[node name="WheelRF" type="VehicleWheel3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 0.5, 0.5)
 use_as_steering = true
+wheel_roll_influence = 1.0
 wheel_radius = 0.3
 wheel_rest_length = 0.1
 suspension_travel = 0.1
 suspension_stiffness = 75.0
+damping_compression = 0.4
+damping_relaxation = 0.6
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleBody3D/WheelRF"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WheelRF"]
 transform = Transform3D(-4.3711385e-08, -1, -4.371139e-08, 1, -4.371139e-08, 4.371139e-08, -4.371139e-08, -4.371139e-08, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_eqy0w")
 
-[node name="WheelLB" type="VehicleWheel3D" parent="VehicleBody3D"]
+[node name="WheelLB" type="VehicleWheel3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.5, 0.5, -0.5)
 use_as_traction = true
+wheel_roll_influence = 1.0
 wheel_radius = 0.3
 wheel_rest_length = 0.1
 suspension_travel = 0.1
 suspension_stiffness = 75.0
+damping_compression = 0.4
+damping_relaxation = 0.6
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleBody3D/WheelLB"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WheelLB"]
 transform = Transform3D(-4.3711385e-08, -1, -4.371139e-08, 1, -4.371139e-08, 4.371139e-08, -4.371139e-08, -4.371139e-08, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_eqy0w")
 
-[node name="WheelLF" type="VehicleWheel3D" parent="VehicleBody3D"]
+[node name="WheelLF" type="VehicleWheel3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 0.5, -0.5)
 use_as_steering = true
+wheel_roll_influence = 1.0
 wheel_radius = 0.3
 wheel_rest_length = 0.1
 suspension_travel = 0.1
 suspension_stiffness = 75.0
+damping_compression = 0.4
+damping_relaxation = 0.6
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleBody3D/WheelLF"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WheelLF"]
 transform = Transform3D(-4.3711385e-08, -1, -4.371139e-08, 1, -4.371139e-08, 4.371139e-08, -4.371139e-08, -4.371139e-08, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_eqy0w")
 
-[node name="Camera3D" type="Camera3D" parent="VehicleBody3D"]
+[node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-4.3076273e-08, 0.16984832, -0.9854703, 7.4243047e-09, 0.9854703, 0.16984832, 1, 0, -4.3711392e-08, -1.752, 1.5632725, 0)
