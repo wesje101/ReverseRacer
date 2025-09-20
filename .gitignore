@@ -25,3 +25,6 @@ Settings.ini
 addons/godot-jolt/[Ww]indows/~*.dll
 FunnyMechGame2025.csproj.user
 *.tmp
+
+# JetBrains IDE stuff
+.idea
