@@ -1,15 +1,56 @@
-[gd_scene load_steps=3 format=3 uid="uid://csv74pk4uje76"]
+[gd_scene load_steps=4 format=3 uid="uid://csv74pk4uje76"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_eqy0w"]
+size = Vector3(1, 0.3, 0.6)
 
 [sub_resource type="BoxMesh" id="BoxMesh_vo8b5"]
+size = Vector3(1, 0.3, 0.6)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_eqy0w"]
+top_radius = 0.3
+bottom_radius = 0.3
+height = 0.15
 
 [node name="PlayerCar" type="Node3D"]
 
 [node name="VehicleBody3D" type="VehicleBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VehicleBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_eqy0w")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("BoxMesh_vo8b5")
+
+[node name="WheelRB" type="VehicleWheel3D" parent="VehicleBody3D"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.5, 0.3, 0.4)
+wheel_radius = 0.3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleBody3D/WheelRB"]
+transform = Transform3D(-4.3711385e-08, -1, -4.371139e-08, 1, -4.371139e-08, 4.371139e-08, -4.371139e-08, -4.371139e-08, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_eqy0w")
+
+[node name="WheelRF" type="VehicleWheel3D" parent="VehicleBody3D"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 0.3, 0.4)
+wheel_radius = 0.3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleBody3D/WheelRF"]
+transform = Transform3D(-4.3711385e-08, -1, -4.371139e-08, 1, -4.371139e-08, 4.371139e-08, -4.371139e-08, -4.371139e-08, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_eqy0w")
+
+[node name="WheelLB" type="VehicleWheel3D" parent="VehicleBody3D"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.5, 0.3, -0.4)
+wheel_radius = 0.3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleBody3D/WheelLB"]
+transform = Transform3D(-4.3711385e-08, -1, -4.371139e-08, 1, -4.371139e-08, 4.371139e-08, -4.371139e-08, -4.371139e-08, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_eqy0w")
+
+[node name="WheelLF" type="VehicleWheel3D" parent="VehicleBody3D"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 0.3, -0.4)
+wheel_radius = 0.3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleBody3D/WheelLF"]
+transform = Transform3D(-4.3711385e-08, -1, -4.371139e-08, 1, -4.371139e-08, 4.371139e-08, -4.371139e-08, -4.371139e-08, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_eqy0w")
