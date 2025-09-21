@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://b3d7gyswbmlb3"]
+
+[ext_resource type="PackedScene" uid="uid://dv8vs2hg4vn60" path="res://Objects/PlayerRaceCar.tscn" id="1_taob7"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_xtgnj"]
+size = Vector2(250, 250)
+orientation = 1
+
+[sub_resource type="Gradient" id="Gradient_xqj25"]
+colors = PackedColorArray(1, 0, 0, 1, 0.3652631, 1, 0.33595186, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kobeo"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_y1yrn"]
+noise = SubResource("FastNoiseLite_kobeo")
+color_ramp = SubResource("Gradient_xqj25")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0362"]
+albedo_color = Color(0.12955844, 0.12955847, 0.12955844, 1)
+albedo_texture = SubResource("NoiseTexture2D_y1yrn")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t1k0l"]
+size = Vector3(250, 15, 250)
+
+[node name="Course1" type="Node3D"]
+
+[node name="GroundMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_xtgnj")
+surface_material_override/0 = SubResource("StandardMaterial3D_r0362")
+
+[node name="GroundCollider" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.041176915, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GroundCollider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.5, 0)
+shape = SubResource("BoxShape3D_t1k0l")
+
+[node name="RaceCar" parent="." instance=ExtResource("1_taob7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6307678, -0.041176796, 4.341194)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+shadow_enabled = true

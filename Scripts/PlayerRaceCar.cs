@@ -15,9 +15,9 @@ namespace ReverseRacer.Scripts
         {
             Steering = (float) Mathf.MoveToward(
                 Steering, 
-                Input.GetAxis("ui_right", "ui_left") * Globals.MAX_STEER, 
+                Input.GetAxis("right", "left") * Globals.MAX_STEER, 
                 delta * 2.5);
-            EngineForce = Input.GetAxis("ui_down", "ui_up") * Globals.ENGINE_POWER;
+            EngineForce = Input.GetAxis("down", "up") * Globals.ENGINE_POWER;
         }
 
         public override void _Ready()
