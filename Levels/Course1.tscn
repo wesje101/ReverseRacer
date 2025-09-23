@@ -1,43 +1,51 @@
-[gd_scene load_steps=8 format=3 uid="uid://b3d7gyswbmlb3"]
+[gd_scene load_steps=6 format=3 uid="uid://b3d7gyswbmlb3"]
 
 [ext_resource type="PackedScene" uid="uid://dv8vs2hg4vn60" path="res://Objects/PlayerRaceCar.tscn" id="1_taob7"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_xtgnj"]
-size = Vector2(250, 250)
-orientation = 1
-
-[sub_resource type="Gradient" id="Gradient_xqj25"]
-colors = PackedColorArray(1, 0, 0, 1, 0.3652631, 1, 0.33595186, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_kobeo"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_y1yrn"]
-noise = SubResource("FastNoiseLite_kobeo")
-color_ramp = SubResource("Gradient_xqj25")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0362"]
-albedo_color = Color(0.12955844, 0.12955847, 0.12955844, 1)
-albedo_texture = SubResource("NoiseTexture2D_y1yrn")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_t1k0l"]
-size = Vector3(250, 15, 250)
+[ext_resource type="PackedScene" uid="uid://c71l46o36w7sv" path="res://Objects/CourseSegments/Tunnel/straight_tunnel.tscn" id="2_xtgnj"]
+[ext_resource type="PackedScene" uid="uid://b1wl5mxr7t2dr" path="res://Objects/CourseSegments/Tunnel/corner_tunnel.tscn" id="3_xqj25"]
+[ext_resource type="PackedScene" uid="uid://0rb7jrrdglo4" path="res://Objects/CourseSegments/Halfpipe/straight_half_pipe.tscn" id="4_r0362"]
+[ext_resource type="PackedScene" uid="uid://djbtnipmc0q82" path="res://Objects/CourseSegments/Halfpipe/corner_halfpipe.tscn" id="5_t1k0l"]
 
 [node name="Course1" type="Node3D"]
 
-[node name="GroundMesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("QuadMesh_xtgnj")
-surface_material_override/0 = SubResource("StandardMaterial3D_r0362")
-
-[node name="GroundCollider" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.041176915, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GroundCollider"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.5, 0)
-shape = SubResource("BoxShape3D_t1k0l")
-
 [node name="RaceCar" parent="." instance=ExtResource("1_taob7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6307678, -0.041176796, 4.341194)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 52.956764, 0.32104397, -37.56379)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 shadow_enabled = true
+
+[node name="TrackSegments" type="Node" parent="."]
+
+[node name="StraightTunnel" parent="TrackSegments" instance=ExtResource("2_xtgnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 12, -39)
+
+[node name="CornerTunnel" parent="TrackSegments" instance=ExtResource("3_xqj25")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 12, -32)
+
+[node name="StraightTunnel2" parent="TrackSegments" instance=ExtResource("2_xtgnj")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -48.5, 12, 5.5)
+
+[node name="StraightTunnel3" parent="TrackSegments" instance=ExtResource("2_xtgnj")]
+transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 1, 58, 12, 126)
+
+[node name="StraightTunnel4" parent="TrackSegments" instance=ExtResource("4_r0362")]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 1, 72, 12, -39)
+
+[node name="StraightTunnel5" parent="TrackSegments" instance=ExtResource("4_r0362")]
+transform = Transform3D(-1.3113416e-07, 0, 1, 0, 1, 0, -3, 0, -4.371139e-08, -48.5, 12, 55)
+
+[node name="CSGCombiner3D" parent="TrackSegments" instance=ExtResource("5_t1k0l")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -41.5, 12, 117.544)
+
+[node name="CornerTunnel2" parent="TrackSegments" instance=ExtResource("3_xqj25")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 157.75, 12, 119.022)
+
+[node name="StraightTunnel6" parent="TrackSegments" instance=ExtResource("2_xtgnj")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 166.25, 12, 81.522)
+
+[node name="StraightTunnel4" parent="." instance=ExtResource("4_r0362")]
+transform = Transform3D(-1.3113416e-07, 0, -1, 0, 1, 0, 3, 0, -4.371139e-08, 166.25, 12, 32.022003)
+
+[node name="CSGCombiner3D2" parent="." instance=ExtResource("5_t1k0l")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 159.25, 12, -30.521996)

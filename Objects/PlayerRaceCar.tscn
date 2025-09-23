@@ -193,7 +193,6 @@ skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3499743e-13, 0.1, -3.609557e-16)
-visible = false
 shape = SubResource("ConvexPolygonShape3D_r7206")
 
 [node name="WheelBackLeft" type="VehicleWheel3D" parent="."]

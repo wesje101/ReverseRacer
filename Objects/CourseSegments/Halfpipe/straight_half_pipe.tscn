@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://0rb7jrrdglo4"]
+
+[node name="StraightTunnel" type="CSGCombiner3D"]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0)
+size = Vector3(25, 12.5, 25)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+operation = 2
+radius = 12.0
+height = 26.0
+sides = 64
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+shadow_enabled = true
+omni_range = 20.0

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://b1wl5mxr7t2dr"]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D"]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(50, 25, 50)
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0.012553215, 29.876968)
+operation = 2
+inner_radius = 25.0
+outer_radius = 49.0
+sides = 64
+ring_sides = 32
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+shadow_enabled = true
+omni_range = 25.0
